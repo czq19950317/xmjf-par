@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.xm.server.db.dao.BusUserStatDao" >
+  <resultMap id="BaseResultMap" type="com.shsxt.xm.api.po.BusUserStat" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="recharge_count" property="rechargeCount" jdbcType="INTEGER" />
+    <result column="recharge_amount" property="rechargeAmount" jdbcType="DECIMAL" />
+    <result column="cash_count" property="cashCount" jdbcType="INTEGER" />
+    <result column="cash_amount" property="cashAmount" jdbcType="DECIMAL" />
+    <result column="invest_count" property="investCount" jdbcType="INTEGER" />
+    <result column="invest_amount" property="investAmount" jdbcType="DECIMAL" />
+    <result column="invest_lave_amount" property="investLaveAmount" jdbcType="DECIMAL" />
+    <result column="coupon_count" property="couponCount" jdbcType="INTEGER" />
+    <result column="coupon_amount" property="couponAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, recharge_count, recharge_amount, cash_count, cash_amount, invest_count, 
+    invest_amount, invest_lave_amount, coupon_count, coupon_amount
+  </sql>
+  <select id="queryById" resultMap="BaseResultMap" parameterType="com.shsxt.xm.api.po.BusUserStatKey" >
+    select
+    <include refid="Base_Column_List" />
+    from bus_user_stat
+    where id = #{id,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.shsxt.xm.api.po.BusUserStat" >
+    insert into bus_user_stat (id, user_id, recharge_count,
+      recharge_amount, cash_count, cash_amount,
+      invest_count, invest_amount, invest_lave_amount,
+      coupon_count, coupon_amount)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{rechargeCount,jdbcType=INTEGER},
+      #{rechargeAmount,jdbcType=DECIMAL}, #{cashCount,jdbcType=INTEGER}, #{cashAmount,jdbcType=DECIMAL},
+      #{investCount,jdbcType=INTEGER}, #{investAmount,jdbcType=DECIMAL}, #{investLaveAmount,jdbcType=DECIMAL},
+      #{couponCount,jdbcType=INTEGER}, #{couponAmount,jdbcType=DECIMAL})
+  </insert>
+  <update id="update" parameterType="com.shsxt.xm.api.po.BusUserStat" >
+    update bus_user_stat
+    <set >
+      <if test="rechargeCount != null" >
+        recharge_count = #{rechargeCount,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeAmount != null" >
+        recharge_amount = #{rechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cashCount != null" >
+        cash_count = #{cashCount,jdbcType=INTEGER},
+      </if>
+      <if test="cashAmount != null" >
+        cash_amount = #{cashAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="investCount != null" >
+        invest_count = #{investCount,jdbcType=INTEGER},
+      </if>
+      <if test="investAmount != null" >
+        invest_amount = #{investAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="investLaveAmount != null" >
+        invest_lave_amount = #{investLaveAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="couponCount != null" >
+        coupon_count = #{couponCount,jdbcType=INTEGER},
+      </if>
+      <if test="couponAmount != null" >
+        coupon_amount = #{couponAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>
