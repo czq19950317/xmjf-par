@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import javax.servlet.http.HttpServletRequest;
 
 
+
 public class BaseController {
     /**
      * 获取上下文路径
