@@ -186,7 +186,7 @@ function  initTrHtml(list) {
 
              }
              if(status==10||status==13||status==18){
-                  trs=trs+"<p class='left_money'>可投金额"+tempData.itemOngoingAccount+"元</p>" +
+                  trs=trs+"<p class='left_money'>已投金额"+tempData.itemOngoingAccount+"元</p>" +
                       "<p><a href='"+href+"'><input valid type='button' value='立即投资'></a></p>";
              }
             if(status==20){

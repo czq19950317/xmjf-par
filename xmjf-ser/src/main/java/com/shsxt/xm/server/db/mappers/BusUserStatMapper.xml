@@ -69,4 +69,8 @@
     where id = #{id,jdbcType=INTEGER}
       and user_id = #{userId,jdbcType=INTEGER}
   </update>
+  <select id="queryBusUserStatByUserId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from bus_user_stat where user_id=#{userId}
+  </select>
 </mapper>

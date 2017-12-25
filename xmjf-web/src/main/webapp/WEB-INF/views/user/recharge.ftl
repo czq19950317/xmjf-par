@@ -27,7 +27,7 @@
             </div>
             <div class="recharge-title-right">
                 <div class="record-but">
-                    <a href="${ctx}/account/rechargeRecord">
+                    <a href="${ctx}/account/rechargeRecodePage">
                         <button class="but">
                             充值记录
                         </button>
@@ -42,7 +42,7 @@
                     <div class="third-pay-title">
                         充值金额：
                     </div>
-                    <p class="recharge_input_wrap"><input type="number" name="amount" class="recharge-input" id="rechargeAmount"/></p>
+                    <p class="recharge_input_wrap"><input  name="amount" class="recharge-input" id="rechargeAmount"/></p>
                 </div>
                 <div class="third-pay">
                     <div class="third-pay-title">

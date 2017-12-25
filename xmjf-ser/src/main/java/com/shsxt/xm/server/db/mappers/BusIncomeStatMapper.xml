@@ -74,4 +74,9 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="queryBusIncomeStatByUserId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from bus_income_stat where user_id=#{userId}
+  </select>
 </mapper>

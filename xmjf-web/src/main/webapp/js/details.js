@@ -118,3 +118,74 @@ function toRecharge() {
     })
 
 }
+
+function doInvest() {
+
+    var usableAmount=parseFloat($("#ye").attr("data-value"));
+    var amount=$("#usableMoney").val();
+    var itemId=$("#itemId").val();
+    /**
+     * 账户余额  >0
+     * 投资金额 >账户余额
+     * 投资金额>=最小投资金额(单笔投资)
+     * 投资金额<=最大投资金额(单笔投资)
+     * 投资记录非空
+     */
+    if(usableAmount==0){
+        layer.tips("可用余额不满足本次投资金额","#tz");
+        return;
+    }
+    if(isEmpty(amount)){
+        layer.tips("请输入投资金额","#usableMoney");
+        return;
+    }
+    if(amount>usableAmount){
+        layer.tips("投资金额不能大于账户可用余额","#usableMoney");
+        return;
+    }
+    //起头金额
+    var sinleMinInvestAmount=parseFloat($("#minInvestMoney").attr("data-value"));
+    if(sinleMinInvestAmount>0){
+        if(amount<sinleMinInvestAmount){
+            layer.tips("投资金额不能小于起投金额","#usableMoney");
+            return;
+        }
+    }
+
+    var sinleMaxInvestAmount=parseFloat($("#maxInvestMoney").attr("data-value"));
+    if(sinleMaxInvestAmount>0){
+        if(amount>sinleMaxInvestAmount){
+            layer.tips("投资金额不能大于单笔最大起投金额","#usableMoney");
+            return;
+        }
+    }
+    layer.prompt({title:'输入任何口令，并确认',formType:1},function (pass,index) {
+        layer.close(index);
+        var businessPassword=pass;
+        if(isEmpty(businessPassword)){
+            layer.msg("交易密码不能为空！")
+            return;
+        }
+        $.ajax({
+            type:"post",
+            url:ctx+"/busItemInvest/userInvest",
+            data:{
+                itemId:itemId,
+                amount:amount,
+                businessPassword:businessPassword
+            },
+            dataType:"json",
+            success:function (data) {
+                if(data.code==200){
+                    layer.msg("项目投标成功！");
+                    window.location.reload(false);
+                }else {
+                    layer.msg(data.msg);
+                }
+            }
+        })
+    });
+
+
+    
+}

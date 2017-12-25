@@ -84,6 +84,6 @@ http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <dubbo:service interface="com.shsxt.xm.api.service.IBusItemLoanService" ref="busItemLoanServiceImpl"></dubbo:service>
     <dubbo:service interface="com.shsxt.xm.api.service.ISysPictureService" ref="sysPictureServiceImpl"></dubbo:service>
     <dubbo:service interface="com.shsxt.xm.api.service.IBusItemInvestService" ref="busItemInvestServiceImpl"></dubbo:service>
-
+    <dubbo:service interface="com.shsxt.xm.api.service.IBusAccountRechargeService" ref="busAccountRechargeServiceImpl"></dubbo:service>
 
 </beans>

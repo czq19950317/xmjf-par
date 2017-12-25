@@ -15,10 +15,9 @@
     <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
     <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
     <result column="addip" property="addip" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.shsxt.xm.api.po.BusAccountRecharge" extends="BaseResultMap" >
     <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     id, user_id, order_no, status, recharge_amount, actual_amount, fee_amount, fee_rate, 
     resource, type, addtime, audit_time, addip
@@ -26,7 +25,7 @@
   <sql id="Blob_Column_List" >
     remark
   </sql>
-  <select id="queryById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     ,
@@ -170,4 +169,16 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="queryBusAccountRechargeByOrderNo" resultMap="BaseResultMap" >
+    SELECT <include refid="Base_Column_List" />
+    FROM bus_account_recharge
+    WHERE order_no=#{orderNo}
+  </select>
+  <select id="queryForPage" parameterType="com.shsxt.xm.api.query.AccountRechargeQuery" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM bus_account_recharge
+    <where>
+      user_id=#{userId}
+    </where>
+  </select>
 </mapper>

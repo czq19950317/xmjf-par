@@ -273,4 +273,74 @@
       item_id=#{itemId}
     </where>
   </select>
+  
+  <select id="queryUserIsInvestIsNewItem" resultType="int">
+      SELECT
+        count(1)
+    FROM
+        bus_item_invest bii,
+        bas_item bi
+    WHERE
+        bii.item_id = bi.id
+    AND bii.user_id = #{userId}
+    AND bi.item_isnew = 1
+  </select>
+  
+  <select id="queryInvestInfoByUserId" resultType="com.shsxt.xm.api.dto.InvestDto">
+     SELECT
+            temp. MONTH,
+            IFNULL(temp02.total, 0) AS total
+        FROM
+            (
+                SELECT
+                    DATE_FORMAT(CURDATE(), "%Y-%m") AS MONTH
+                FROM
+                    DUAL
+                UNION
+                    SELECT
+                        DATE_FORMAT(
+                            CURDATE() - INTERVAL 1 MONTH,
+                            "%Y-%m"
+                        ) AS MONTH
+                    FROM
+                        DUAL
+                    UNION
+                        SELECT
+                            DATE_FORMAT(
+                                CURDATE() - INTERVAL 2 MONTH,
+                                "%Y-%m"
+                            ) AS MONTH
+                        FROM
+                            DUAL
+                        UNION
+                            SELECT
+                                DATE_FORMAT(
+                                    CURDATE() - INTERVAL 3 MONTH,
+                                    "%Y-%m"
+                                ) AS MONTH
+                            FROM
+                                DUAL
+                            UNION
+                                SELECT
+                                    DATE_FORMAT(
+                                        CURDATE() - INTERVAL 4 MONTH,
+                                        "%Y-%m"
+                                    ) AS MONTH
+                                FROM
+                                    DUAL
+            ) temp
+        LEFT JOIN (
+            SELECT
+                DATE_FORMAT(addtime, "%Y-%m") AS MONTH,
+                SUM(invest_amount) AS total
+            FROM
+                bus_item_invest
+            WHERE
+                user_id = #{userId}
+            GROUP BY
+                DATE_FORMAT(addtime, "%Y-%m")
+        ) temp02 ON temp. MONTH = temp02. MONTH
+        ORDER BY
+            temp. MONTH ASC
+  </select>
 </mapper>

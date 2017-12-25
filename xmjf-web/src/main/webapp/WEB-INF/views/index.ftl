@@ -26,7 +26,7 @@
             <a href="${ctx}/index?0?0" class="header_nav_active">首页</a>
             <a href="${ctx}/basItem/list">我要投资</a>
             <a href="${ctx}/security?0?2">安全保障</a>
-            <a href="${ctx}/account/accountInfo">我的账户</a>
+            <a href="${ctx}/account/accountInfoPage">我的账户</a>
             <a href="${ctx}/introduce?0?4">关于我们</a>
         </div>
         <div class="header_button">

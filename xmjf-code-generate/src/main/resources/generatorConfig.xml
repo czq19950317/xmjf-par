@@ -30,7 +30,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.shsxt.xm.server.db.dao" targetProject="D:\SXT\ideaWorkSpace\xmjf-par\xmjf-ser\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <table tableName="bus_account_recharge" domainObjectName="BusAccountRecharge" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="bus_integral_log" domainObjectName="BusIntegralLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
     </context>
 </generatorConfiguration>

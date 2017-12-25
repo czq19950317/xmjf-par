@@ -105,4 +105,18 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+  <select id="queryAccountInfoByUserId" resultType="map">
+    SELECT
+bal.total '总金额' ,
+bal.cash '可提现金额',
+bal.frozen '冻结金额',
+bal.wait+bis.wait_income as '代收金额',
+bis.wait_income '代收利息'
+FROM
+	bus_account bal
+LEFT JOIN bus_income_stat bis
+ON bal.user_id=bis.user_id
+WHERE bal.user_id=#{userId}
+  </select>
+
 </mapper>

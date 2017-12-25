@@ -78,6 +78,6 @@
     <dubbo:reference id="busItemLoanService" interface="com.shsxt.xm.api.service.IBusItemLoanService" />
     <dubbo:reference id="basUserSecurityService" interface="com.shsxt.xm.api.service.IBasUserSecurityService" />
     <dubbo:reference id="busItemInvestService" interface="com.shsxt.xm.api.service.IBusItemInvestService" />
-
+    <dubbo:reference id="busAccountRechargeService" interface="com.shsxt.xm.api.service.IBusAccountRechargeService" />
 
 </beans>

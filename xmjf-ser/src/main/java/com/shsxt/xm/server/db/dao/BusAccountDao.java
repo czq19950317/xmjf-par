@@ -6,6 +6,9 @@ import com.shsxt.xm.server.providers.BusAccountProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
 public interface BusAccountDao extends BaseDao<BusAccount> {
     /**
      * 查询登陆用户账户金额信息
@@ -14,5 +17,7 @@ public interface BusAccountDao extends BaseDao<BusAccount> {
      */
     @SelectProvider(type = BusAccountProvider.class,method = "getQueryBusAccountByUserIdSql")
     public BusAccount queryBusAccountByuserId(@Param("userId") Integer userId);
+
+    public Map<String,BigDecimal> queryAccountInfoByUserId(@Param("userId") Integer userId);
 
 }
