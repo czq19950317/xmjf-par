@@ -3,6 +3,7 @@ package com.shsxt.xm.api.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+
 public class AccountDto implements Serializable{
     private static final long serialVersionUID = 543858229319222820L;
     private String name;
