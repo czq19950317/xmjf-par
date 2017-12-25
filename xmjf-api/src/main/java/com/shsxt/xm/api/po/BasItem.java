@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ *
+ */
 public class BasItem implements Serializable{
     private static final long serialVersionUID = 9186144860705624831L;
     private Integer id;
